@@ -13,7 +13,7 @@
 
 
   if($connection){
-    echo "Database found! <br>";
+    //echo "Database found! <br>";
   }
   else{
     #Yes, exit in PhP is legit called die
@@ -35,9 +35,8 @@
   $QueryOut = mysqli_Query($connection, $sqlQuery);
 
   if(mysqli_num_rows($QueryOut)  > 0) {
-    echo "Query succeeded!";
-    echo "<br>";
-
+    //echo "Query succeeded!";
+    //echo "<br>";
     #get tabulated rows as arrays
     $entry = 0;
     while($activerow = mysqli_fetch_array($QueryOut)){
@@ -56,7 +55,7 @@
   $Cols = 6;
   $Rows = mysqli_num_rows($QueryOut);
 
-  echo $Rows.", ".$Cols;
+  //echo $Rows.", ".$Cols;
 
   #Maybe not needed? since sir will never see this > w<
   mysqli_close($connection);

@@ -1,0 +1,18 @@
+/*General specs for body content*/
+body {
+  background-color: powderblue;
+}
+
+/*Headers*/
+h1 {
+  color: black;
+  font-family:sans-serif;
+  font-size: 70px;
+}
+
+/*Main line text*/
+p {
+  color: red;
+  font-family:sans-serif;
+  font-size: 25px;
+}
