@@ -7,7 +7,7 @@ session_start();
 
 <head>
 <meta charset = "utf-8">
-<title>Select_Test</title>
+<title>Rankings</title>
 </head>
 
 <body>
@@ -34,7 +34,7 @@ session_start();
               heroes.heroProf AS HeroRank
               FROM playerprofile, roles, heroes
               WHERE heroes.roles = 'DPS' && roles.roleName = 'DPS'
-              ORDER BY playerprofile.playerCareerScore DESC";
+              ORDER BY playerprofile.playerCareerScore DESC;";
 
   $QueryOut = mysqli_Query($connection, $sqlQuery);
 

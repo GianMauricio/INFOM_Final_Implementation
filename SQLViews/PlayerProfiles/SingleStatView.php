@@ -7,7 +7,7 @@ session_start();
 
 <head>
 <meta charset = "utf-8">
-<title>Select_Test</title>
+<title>Player profile</title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@ session_start();
               (COUNT(matchdata.matchResult = 1) - COUNT(matchdata.matchResult = 0)) +
               AVG(matchdata.onObjTime) + AVG(matchdata.onObjKills) AS 'Overall Career Score'
               FROM playerprofile, matchdata
-              WHERE playerprofile.playerID = {$playerID};";
+              WHERE playerprofile.playerID = {$_SESSION["PlayerName"]};";
 
   $QueryOut = mysqli_Query($connection, $sqlQuery);
 

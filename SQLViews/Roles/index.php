@@ -12,9 +12,9 @@ session_start();
 </head>
 
 <body>
-  <h1>User Views</h1>
+  <h1>Role Views</h1>
   <br>
-  <p>To view the list of all heroes: <a href="http://localhost/SQLViews/Heroes/HeroesView.php">To All Heroes View</a></p>
+  <p>To view the list of all Roles: <a href="http://localhost/SQLViews/Roles/RolesView.php">To All Hero Roles</a></p>
 </body>
 
 </html>

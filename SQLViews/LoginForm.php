@@ -16,7 +16,7 @@
     <input type = "password" name = "Pwd" placeholder = "Password..."> <br>
 
 
-    <button type = "Submit" name = "Submit">Sign Up</button>
+    <button type = "Submit" name = "Submit">Log In</button>
   </form>
 
   <?php

@@ -1,7 +1,7 @@
 <?php
 
 #Check if params is empty
-function isEmpty($UserName, $PlayerName, $Password, $PasswordCheck){
+function isEmpty($UserName, $PlayerID, $Password, $PasswordCheck){
   $result;
   if (empty($UserName) || empty($Password) || empty($PasswordCheck) || empty($PlayerID)) {
     $result = false;
@@ -103,7 +103,7 @@ function loginUser($connection, $UserName, $Password){
   }
 
   #Hard check because of weird garbage data incoming somtimes
-  if (!($storedPwd === $UserExists["password"])) {
+  if (!($Password === $UserExists["password"])) {
     header("location: ../LoginForm.php?error=wrongpass");
   }
 
@@ -114,6 +114,35 @@ function loginUser($connection, $UserName, $Password){
     $_SESSION["UserName"] = $UserExists["accountname"];
     $_SESSION["Rank"] = $UserExists["accountrank"];
 
-    header("location: ../index.php?user=set");
+    header("location: ../index.php");
   }
+}
+
+function getRegion($connection, $PlayerID){
+  $playerRegion;
+  $sqlQuery = "SELECT playerprofile.playerRegion FROM playerprofile
+              WHERE playerID = ?;";
+  $sanitizeInput = mysqli_stmt_init($connection);
+
+  if (!mysqli_stmt_prepare($sanitizeInput, $sqlQuery)) {
+    header("location: ../SignUpForm.php?error=prepfailed");
+    exit();
+  }
+
+  mysqli_stmt_bind_param($sanitizeInput, "s", $PlayerID);
+  mysqli_stmt_execute($sanitizeInput);
+
+  $sqlResult = mysqli_stmt_get_result($sanitizeInput);
+
+  if ($row = mysqli_fetch_assoc($sqlResult)) {
+    $playerRegion = $row["playerRegion"]; #Used for log in stuff
+  }
+
+  else{
+    $playerRegion = "Not Found";
+  }
+
+  return $playerRegion;
+
+  mysqli_stmt_close($sanitizeInput);
 }

@@ -27,8 +27,8 @@ session_start();
   ?>
   <p>To procceed to player stats: <a href="http://localhost/SQLViews/PlayerProfiles/">To Player View</a></p>
   <p>To procceed to hero stats: <a href="http://localhost/SQLViews/Heroes/">To Heroes View</a></p>
-  <p>To procceed to role stats: <a href="http://localhost/SQLViews/Roles/ProfileView.php">To Roles Page</a></p>
-  <p>To procceed to region stats: <a href="http://localhost/SQLViews/Regions/ProfileView.php">To Regions Page</a></p>
+  <p>To procceed to role stats: <a href="http://localhost/SQLViews/Roles/">To Roles Page</a></p>
+  <p>To procceed to region stats: <a href="http://localhost/SQLViews/Regions/">To Regions Page</a></p>
 </body>
 
 </html>

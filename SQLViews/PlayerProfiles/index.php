@@ -17,7 +17,7 @@ session_start();
   <p>To procceed to player rankings: <a href="http://localhost/SQLViews/PlayerProfiles/ProfileView.php">To Rankings View</a></p>
   <?php
     if(isset($_SESSION["PlayerName"])){
-      echo "<p>To procceed to personal statistics: <a href='http://localhost/SQLViews/PlayerProfiles/SingleStatView.php'>To personal stats View</a></p>"
+      echo "<p>To procceed to personal statistics: <a href='http://localhost/SQLViews/PlayerProfiles/SingleStatView.php'>To personal stats View</a></p>";
     }
   ?>
 
