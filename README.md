@@ -1,2 +1,6 @@
 # INFOM_Final_Implementation
-Using the powers of shitty HTML with some PhP; we shall bring this mySQL DB to the next level. Low-key mad that we weren't taught any front-end for this but whatevs; at least now I can use what I already know.
+Project Title: OverBuff 2 basic implementation
+Mauricio, Gian
+Lo, Jacob
+
+Overbuff2 is our personal take on the website of Overbuff; with it's own specialized views to cater to more casual players who want to know the simple things.
