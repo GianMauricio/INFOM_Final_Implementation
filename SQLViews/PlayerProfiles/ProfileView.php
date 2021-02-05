@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html>
 
@@ -20,25 +24,17 @@
     die("Connection failed; Reason: ".mysqli_connect_error());
   }
 
-  #Set data constants heroes
-  $Cols = 10;
-  $playerID = 0; #Replaceable
-  $sqlHeader = ["Name", "Active Region", "Best Role", "Win Rate", "Preferred Hero", "Avg Damage", "Avg Healing", "Average Time playing objective", "Average Kills on point", "Overall Career Score"];
-  $sqlQuery = "SELECT
-              playerprofile.playerName AS 'Name',
-              playerprofile.playerRegion AS 'Active Region',
-              playerprofile.playerPreferredRole AS 'Best Role',
-              COUNT(matchdata.matchResult = 1) / COUNT(matchdata.matchResult = 0) AS 'W/L',
-              playerprofile.playerPreferredHero AS 'Waifu',
-              AVG(matchdata.doneDamage) AS 'Average Dmg',
-              AVG(matchdata.doneHealing) AS 'Average Hls',
-              AVG(matchdata.onObjTime) AS 'Average Time on Objective',
-              AVG(matchdata.onObjKills) AS 'Average Kills that mattered',
-              (AVG(matchdata.doneDamage) / 1000 + AVG(matchdata.doneHealing) / 1000) *
-              (COUNT(matchdata.matchResult = 1) - COUNT(matchdata.matchResult = 0)) +
-              AVG(matchdata.onObjTime) + AVG(matchdata.onObjKills) AS 'Overall Career Score'
-              FROM playerprofile, matchdata
-              WHERE playerprofile.playerID = {$playerID};";
+  $sqlHeader = ["Player Career Score", "Name", "Preferred Role", "Win Rate", "Waifu", "Hero Proficiency"];
+  $sqlQuery = "SELECT playerprofile.playerCareerScore AS player_RoleRank,
+              playerprofile.playerName AS player_name,
+              playerprofile.playerPreferredRole AS player_TopRole,
+              roles.roleName AS Archetypes,
+              roles.roleWinRate AS win_rate,
+              heroes.heroName AS Hero,
+              heroes.heroProf AS HeroRank
+              FROM playerprofile, roles, heroes
+              WHERE heroes.roles = 'DPS' && roles.roleName = 'DPS'
+              ORDER BY playerprofile.playerCareerScore DESC";
 
   $QueryOut = mysqli_Query($connection, $sqlQuery);
 
@@ -60,6 +56,7 @@
   }
 
   #count data for table
+  $Cols = 6;
   $Rows = mysqli_num_rows($QueryOut);
 
   //echo $Rows.", ".$Cols;

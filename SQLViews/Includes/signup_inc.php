@@ -1,17 +1,19 @@
 <?php
 
 if(isset($_POST["Submit"])){
-  echo "Submit was Accessed correctly";
+  echo "Sign-up was Accessed correctly";
 
   $UserName = $_POST["UserName"];
+  $PlayerID = $_POST["PlayerID"];
   $Password = $_POST["Pwd"];
-  $PasswordCheck = $_POST["Conf Pwd"];
+  $PasswordCheck = $_POST["ConfPwd"];
+
 
   require_once 'AccountHandler.php';
   require_once 'functions.inc.php';
 
   #Check if any input boxes were left empty
-  if(isEmpty($UserName, $Password, $PasswordCheck) !== false){
+  if(isEmpty($UserName, $PlayerID, $Password, $PasswordCheck) === false){
     header("location: ../SignUpForm.php?error=emptyinput");
 
     #Not the same as die
@@ -19,7 +21,7 @@ if(isset($_POST["Submit"])){
   }
 
   #Check if the username contains special characters
-  if(isValid($UserName) !== false){
+  if(isValid($UserName) !== false){ #This is terrible implementation. Too Bad!
     header("location: ../SignUpForm.php?error=UwU");
 
     #Not the same as die
@@ -41,8 +43,10 @@ if(isset($_POST["Submit"])){
     #Not the same as die
     exit();
   }
+
+  #If the user did not trip any errors
+  createUser($connection, $UserName, $PlayerID, $Password);
 }
 else{
   header("location: ../SignUpForm.php");
 }
-?>
